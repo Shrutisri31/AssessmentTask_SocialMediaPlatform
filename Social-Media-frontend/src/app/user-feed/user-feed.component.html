@@ -1,0 +1,24 @@
+<div class="container">
+    <div  class="post-container" *ngIf="posts.length && users.length">
+      <div *ngFor="let post of posts" class="post" [ngClass]="{'highlighted': post.postID === highlightedPostId}">
+        <h3>{{ getUserById(post.userID)?.userName }}</h3>
+        <p>{{ post.content }}</p>
+        <button class="button" [ngClass]="{'liked': isPostLiked(post)}" (click)="likePost(post)"> Like </button>
+        <div>
+          <h4>Comments</h4>
+          <div *ngFor="let comment of post.comments || []">
+            <p>{{ getUserById(comment.userID)?.userName }}: {{ comment.content }}</p>
+          </div>
+          <button class="button" (click)="toggleCommentSection(post)">
+            {{ commentEditPostId === post.postID ? 'Hide Comment Box' : 'Show Comment Box' }}
+          </button>
+          <div class="comment-section" [ngClass]="{'show': commentEditPostId === post.postID}">
+            <textarea [(ngModel)]="newComment" placeholder="Add a comment"></textarea>
+            <button class="button" (click)="addComment(post)">Comment</button>
+            <div *ngIf="errorMessage">{{ errorMessage }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

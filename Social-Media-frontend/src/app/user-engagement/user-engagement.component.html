@@ -1,0 +1,16 @@
+<h2>User Engagement Scores</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Engagement Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userEngagementScores">
+      <td>{{ user.userName }}</td>
+      <td>{{ user.engagementScore }}</td>
+    </tr>
+  </tbody>
+</table>
